@@ -3,9 +3,10 @@
   <head>
     <script type="text/javascript" src="assets\js\lib\paper-full.js"></script>
     <!-- https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.8/paper-full.min.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
     <link rel="stylesheet" href="assets\css\style.css" />
     <script type="text/paperscript" canvas="myCanvas">
+      function()
       var circles = [];
         function onKeyDown(event) {
           var maxPoint = new Point(view.size.width, view.size.height);
