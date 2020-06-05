@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Load the Paper.js library -->
     <script type="text/javascript" src="assets\js\lib\paper-full.js"></script>
-    <link rel="stylesheet" href="assets\css\style.css">
-    <!-- Define inlined PaperScript associate it with myCanvas -->
+    <!-- https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.8/paper-full.min.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
+    <link rel="stylesheet" href="assets\css\style.css" />
     <script type="text/paperscript" canvas="myCanvas">
-      // Create a Paper.js Path to draw a line into it:
-      var path = new Path();
-      // Give the stroke a color
-      path.strokeColor = 'pink';
-      var start = new Point(100, 100);
-      // Move to start and draw a line from there
-      path.moveTo(start);
-      // Note the plus operator on Point objects.
-      // PaperScript does that for us, and much more!
-      path.lineTo(start + [ 1000000, -50 ]);
+      var circles = [];
+        function onKeyDown(event) {
+          var maxPoint = new Point(view.size.width, view.size.height);
+          var randomPoint = Point.random();
+          var point = maxPoint * randomPoint;
+          // new Path.Circle(new Point(100, 70), 50).fillColor = 'grey';
+          // console.log(view.size)
+          var newCircle = new Path.Circle(point, 300);
+          newCircle.fillColor = "orange"
+          circles.push(newCircle);
+          //point covers for both x and y since maxpoint has 2 values that both get multiplied
+      }
 
-      var myCircle = new Path.Circle(new Point(100, 70), 50);
-      myCircle.fillColor = 'black';
+      // var animateCircle = new Path.Circle(new Point(300,300),100);
+      // animateCircle.fillColor = "red";
+      // animateCircle.fillColor.hue += 1;
 
+      function onFrame(event) {
+        for(var i = 0; i<circles.length; i++){
+          circles[i].fillColor.hue += 10; //changes color!
+          circles[i].scale(0.9); //shrinks circle!
+        }
+      }
       
-      var circleTwo = new Path.Circle(new Point(0, 00), 2000);
-      circleTwo.fillColor = 'black';
+
     </script>
   </head>
   <body>
